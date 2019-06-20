@@ -17,12 +17,11 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
-        <td><%= company.name %></td>
+        <td><%= link_to company.name, company %></td>
         <td><%= company.employees.count %></td>
         <% @areas.each do |area| %>
           <td><%=area.employees.select{|employee| employee.company_id == company.id }.count %></td>
         <% end %>
-        <td><%= link_to 'Show', company %></td>
         <td><%= link_to 'Edit', edit_company_path(company) %></td>
         <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
