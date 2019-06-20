@@ -31,9 +31,8 @@
 </table>
 
 
-<%= form_with model:[ @company, Employee.new ], local: true do |form| %>
+<%= form_with model:[ @company, @employee ], local: true do |form| %>
 <%= form.hidden_field :company_id, value: @company.id %>
-<%= form.hidden_field :area_id, value: @company.id %>
   <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name %>
@@ -46,9 +45,14 @@
     <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
+  <div class="field">
+    <p><%= form.label :area_id, "Area:" %></p>
+    <%= form.select :area_id, @areas.pluck(:id), :prompt => '-- Select One --', :required => true %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
 
 
